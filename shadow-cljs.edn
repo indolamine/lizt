@@ -1,0 +1,13 @@
+{:nrepl {:middleware [cider.nrepl/cider-middleware
+                      refactor-nrepl.middleware/wrap-refactor]
+         :port 7002}
+ :deps {:aliases [:shadow]}
+ :builds
+ {:app
+  {:target     :browser
+   :output-dir "resources/public/js"
+   :asset-path "/js"
+   :modules    {:app {:init-fn lizt.client/run}}
+   :devtools   {:watch-dir "resources/public"}
+   :dev        {}
+   :release    {}}}}

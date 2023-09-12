@@ -1,0 +1,27 @@
+{:deps {com.cognitect/transit-clj {:mvn/version "RELEASE"}
+        converge/transit {:git/url   "https://github.com/evidentsystems/converge"
+                          :sha       "eaa756462aaa4ee2e1193c4af55320c31b03b03f"
+                          :deps/root "./transit"}
+        converge/converge {:git/url   "https://github.com/evidentsystems/converge"
+                           :sha       "eaa756462aaa4ee2e1193c4af55320c31b03b03f"
+                           :deps/root "./converge"}
+        io.pedestal/pedestal.service {:mvn/version "0.6.0"}
+        io.pedestal/pedestal.jetty {:mvn/version "0.6.0"}
+        ch.qos.logback/logback-classic {:mvn/version "1.4.4"}}
+ :aliases
+ {:start-me {:exec-fn lizt.core/start}
+  :shadow {:extra-paths ["frontend/src"]
+           :extra-deps {;; for development
+                        binaryage/devtools {:mvn/version "1.0.6"}
+                        thheller/shadow-cljs {:mvn/version "2.25.3"}
+                        cider/piggieback {:mvn/version "0.5.3"}
+                        cider/cider-nrepl {:mvn/version "0.31.0"}
+                        refactor-nrepl/refactor-nrepl {:mvn/version "3.9.0"}
+                        org.clojure/tools.namespace {:mvn/version "1.3.0"}
+
+                        ;; code dependencies
+                        reagent/reagent {:mvn/version "1.2.0"}
+                        cljs-ajax/cljs-ajax {:mvn/version "0.8.4"}
+                        }}
+  }
+ :paths ["src" "config" "resources"]}
