@@ -63,8 +63,8 @@
        context))})
 
 (def routes
-  #{["/lizt/:lizt-id/ref" :get [lizt-interceptor lizt-ref my-transit-json-body] :route-name :lizt-ref]
-    ["/lizt/:lizt-id/sync" :post [my-transit-json-body-params lizt-interceptor lizt-sync my-transit-json-body] :route-name :lizt-sync]
+  #{["/lizt/ref" :get [my-transit-json-body lizt-interceptor lizt-ref] :route-name :lizt-ref]
+    ["/lizt/sync" :post [my-transit-json-body my-transit-json-body-params lizt-interceptor lizt-sync] :route-name :lizt-sync]
     })
 
 (defn start []
@@ -95,11 +95,16 @@
   (dev-stop)
 
   ;;add some items
-  (doseq [i (range 0 360 30)]
+  (doseq [i (range 120 480 30)]
     (-> server-lizt
         (swap! update-in [:items] conj {:id (+ 1780000 i) :title (str "Item - " i) :status :unchecked})))
 
   ;;drop all items
   (-> server-lizt
       (swap! update-in [:items] (partial filterv (constantly false))))
+
+  ;;change title
+  (-> server-lizt
+      (swap! update :title clojure.string/capitalize))
+
   ,)

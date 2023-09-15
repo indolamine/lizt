@@ -37,7 +37,7 @@
   (reset! last-seen-clock ts))
 
 (defn sync-with-server! []
-  (ajax/POST "/lizt/1/sync"
+  (ajax/POST "/lizt/sync"
              {:format request-format
               :response-format response-format
               :params {:ts @last-seen-clock :patch (c/patch-from-clock @distributed-state @last-seen-clock)}
@@ -55,7 +55,7 @@
     (js/setInterval sync-with-server! 1000)))
 
 (defn fetch-from-server! []
-  (ajax/GET "/lizt/1/ref"
+  (ajax/GET "/lizt/ref"
             {:response-format response-format
              :error-handler prn
              :handler ref->state!}))
