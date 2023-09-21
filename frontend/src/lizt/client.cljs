@@ -79,19 +79,19 @@
 
 (defn app []
   (let [{:keys [title items]} @ui-state]
-    [:div
+    [:div.container
      [:h1 title]
-     [:button.btn.btn-primary {:on-click
-                               #(add-item! (rnd-item))}
+     [:button.btn.btn-primary.mb-3 {:on-click
+                                    #(add-item! (rnd-item))}
       "Add new"]
-     [:button.btn.btn-light {:on-click sync-with-server!}
-      "Sync"]
+     #_[:button.btn.btn-light {:on-click sync-with-server!}
+        "Sync"]
      [:ul.list-group
       (for [{:keys [title id]} items]
-        [:li.list-group-item {:key id
-                              :style
-                              {:background-color (title->color title)}}
-         [:button.btn.btn-light.btn-sm {:type "button" :on-click #(delete-item-by-id! id)} "X"]
+        [:li.list-group-item.px-2 {:key id
+                                   :style
+                                   {:background-color (title->color title)}}
+         [:span.badge [:button.btn.btn-danger.btn-sm {:type "button" :on-click #(delete-item-by-id! id)} "X"] ]
          title])
       ]]))
 
