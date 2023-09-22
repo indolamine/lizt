@@ -94,6 +94,7 @@
   ;;stop server
   (dev-stop)
 
+
   ;;add some items
   (doseq [i (range 120 480 30)]
     (-> server-lizt
@@ -104,6 +105,9 @@
       (swap! update-in [:items] (partial filterv (constantly false))))
 
   ;;change title
+  (-> server-lizt
+      (swap! update :title clojure.string/upper-case))
+
   (-> server-lizt
       (swap! update :title clojure.string/capitalize))
 
