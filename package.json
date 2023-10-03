@@ -1,7 +1,16 @@
 {
   "dependencies": {
+    "@liveblocks/client": "^1.4.1",
+    "@liveblocks/yjs": "^1.4.1",
     "react": "16.13.0",
     "react-dom": "16.13.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "y-indexeddb": "^9.0.11",
+    "y-webrtc": "^10.2.5",
+    "y-websocket": "^1.5.0",
+    "yjs": "^13.6.8"
+  },
+  "devDependencies": {
+    "shadow-cljs": "^2.25.5"
   }
 }
