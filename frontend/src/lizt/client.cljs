@@ -6,6 +6,7 @@
             ["y-indexeddb" :as yidb]
             ["@liveblocks/client" :as lbc]
             ["@liveblocks/yjs$default" :as lbyp]
+            ["@faker-js/faker" :refer [faker]]
             [clojure.edn :as edn]
             [cognitect.transit :as transit]
             [converge.api :as c]
@@ -18,7 +19,8 @@
   (+ (js/Date.now) (js/Math.random)))
 
 (defn rnd-title []
-  (str (inc (rand-int 10000))))
+  (let [wf (.-word faker)]
+    (str/capitalize (str (.adverb wf) " " (.verb wf) " " (.noun wf)))))
 
 (defn rnd-item []
   {:id (rnd-id)
@@ -86,9 +88,7 @@
   (let [{:keys [title items]} @ui-state]
     [:div.container
      [:h1 title]
-     [:button.btn.btn-secondary.mb-3 {:on-click
-                                      #(add-item! (rnd-item))}
-      "Add random"]
+     [:button.btn.btn-secondary.mb-3 {:on-click #(add-item! (rnd-item))} "Add random"]
      [:div [item-input {:on-save add-item! :placeholder "What/?"}] ]
      [:div [:ul.list-group
             (for [{:keys [title id]} items]

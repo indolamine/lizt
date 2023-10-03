@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@faker-js/faker": "^8.1.0",
     "@liveblocks/client": "^1.4.1",
     "@liveblocks/yjs": "^1.4.1",
     "react": "16.13.0",
